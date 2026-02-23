@@ -1,6 +1,6 @@
 <h1>ExpNo 1 :Developing AI Agent with PEAS Description</h1>
-<h3>Name: Saravanan N</h3>
-<h3>Register Number/Staff Id: TSML006</h3>
+<h3>Name: PRIYADARSHINI K</h3>
+<h3>Register Number: 212224100046</h3>
 
 
 <h3>AIM:</h3>
@@ -40,3 +40,49 @@
 <p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+
+## PROGRAM
+```
+import random
+class HospitalEnvironment:
+    def __init__(self):
+        # Two rooms: Room1 and Room2 with random patient temperatures
+        self.rooms = {"Room1": random.uniform(97, 102),
+                      "Room2": random.uniform(97, 102)}
+
+class MedicinePrescribingAgent:
+    def __init__(self, environment):
+        self.env = environment
+        self.location = "Room1"   # Start in Room1
+        self.performance = 0
+    def sense(self):
+        return self.env.rooms[self.location]
+    def prescribe(self, temp):
+        if temp > 98.5:
+            print(f"[{self.location}] Temp={temp:.1f} → Prescribed Medicine ")
+            self.performance += 1
+        else:
+            print(f"[{self.location}] Temp={temp:.1f} → No medicine needed")
+        return
+    def move(self):
+        # Switch between rooms
+        self.location = "Room2" if self.location == "Room1" else "Room1"
+        self.performance -= 0.1
+        print(f"Moved to {self.location} (-0.1 penalty)")
+    def run(self, steps=5):
+        for _ in range(steps):
+            temp = self.sense()
+            self.prescribe(temp)
+            self.move()
+        print("\nFinal Performance Score:", self.performance)
+# Simulation Run
+hospital = HospitalEnvironment()
+agent = MedicinePresc
+```
+
+<H3>OUTPUT</H3>
+<img width="456" height="322" alt="image" src="https://github.com/user-attachments/assets/8649383d-0acc-4acb-ab0a-a58118d312cf" />
+
+<H3>RESULT</H3>
+Thus the Developing AI Agent with PEAS Description was implemented using python programming.
+
